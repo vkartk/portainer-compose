@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+    filebrowser:
+        image: 'filebrowser/filebrowser:s6'
+        container_name: filebrowser
+        network_mode: bridge
+        ports:
+            - '8081:80'
+        environment:
+            - PGID=1000
+            - PUID=1000
+        volumes:
+            - '/home/frosty/AppData/filebrowser/to/settings.json:/config/settings.json'
+            - '/home/frosty/AppData/filebrowser/to/filebrowser.db:/database/filebrowser.db'
+            - '/home/frosty/:/srv'

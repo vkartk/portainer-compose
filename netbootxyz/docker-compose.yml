@@ -1,0 +1,14 @@
+---
+version: "2.1"
+services:
+  netbootxyz:
+    image: ghcr.io/netbootxyz/netbootxyz
+    container_name: netbootxyz
+    network_mode: host
+    volumes:
+      - /home/frosty/AppData/netbootxyz/config:/config # optional
+      - /home/frosty/AppData/netbootxyz/assets:/assets # optional
+    ports:
+      - 3000:3000
+      - 69:69/udp
+    restart: unless-stopped

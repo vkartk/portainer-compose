@@ -10,6 +10,8 @@ services:
         volumes:
             - /home/frosty/AppData/adguardhome/workdir:/opt/adguardhome/work
             - /home/frosty/AppData/adguardhome/confdir:/opt/adguardhome/conf
+            - /home/frosty/AppData/nginxproxymanager/letsencrypt/live/npm-3/fullchain.pem:/opt/adguardhome/certs/fullchain.pem
+            - /home/frosty/AppData/nginxproxymanager/letsencrypt/live/npm-3/privkey.pem:/opt/adguardhome/certs/privkey.pem
         ports:
             - 53:53/tcp
             - 53:53/udp

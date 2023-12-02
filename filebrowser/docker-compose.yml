@@ -3,9 +3,10 @@ services:
     filebrowser:
         image: 'filebrowser/filebrowser'
         container_name: filebrowser
+        restart: unless-stopped
         network_mode: bridge
         ports:
-            - '8081:80'
+            - '4080:80'
         environment:
             - PGID=1000
             - PUID=1000

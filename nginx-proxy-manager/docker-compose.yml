@@ -3,7 +3,8 @@ services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx-proxy-manager
-    network_mode: bridge
+    networks:
+          intranet:
     restart: unless-stopped
     ports:
       - '80:80'
@@ -12,3 +13,6 @@ services:
     volumes:
       - /home/frosty/AppData/nginxproxymanager/data:/data
       - /home/frosty/AppData/nginxproxymanager/letsencrypt:/etc/letsencrypt
+networks:
+  intranet:
+    external: true

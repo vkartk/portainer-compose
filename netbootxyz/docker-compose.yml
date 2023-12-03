@@ -6,8 +6,8 @@ services:
     container_name: netbootxyz
     network_mode: host
     volumes:
-      - /home/frosty/AppData/netbootxyz/config:/config # optional
-      - /home/frosty/AppData/netbootxyz/assets:/assets # optional
+      - /home/frosty/AppData/netbootxyz/config:/config 
+      - /home/frosty/AppData/netbootxyz/assets:/assets
     ports:
       - 3000:3000
       - 69:69/udp

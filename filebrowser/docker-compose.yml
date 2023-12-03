@@ -4,7 +4,7 @@ services:
         image: 'filebrowser/filebrowser'
         container_name: filebrowser
         restart: unless-stopped
-        network_mode: bridge
+        network_mode: intranet
         ports:
             - '4080:80'
         environment:
@@ -14,3 +14,6 @@ services:
             - '/home/frosty/AppData/filebrowser/.filebrowser.json:/config/.filebrowser.json'
             - '/home/frosty/AppData/filebrowser/filebrowser.db:/database/filebrowser.db'
             - '/home/frosty/:/srv'
+networks:
+  intranet:
+    external: true

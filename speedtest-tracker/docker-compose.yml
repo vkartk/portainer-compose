@@ -1,0 +1,44 @@
+version: '3.3'
+services:
+    speedtest-tracker:
+        container_name: speedtest-tracker
+        networks:
+          - speedTestNet
+        ports:
+            - '8080:80'
+            - '8443:443'
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - DB_CONNECTION=pgsql
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_DATABASE=speedtest_tracker
+            - DB_USERNAME=speedydbuser
+            - DB_PASSWORD=speedydb@password@!21
+            - TZ=America/Chicago
+        volumes:
+            - '/etc/localtime:/etc/localtime:ro'
+            - '/home/frosty/AppData/speedtest-tracker/config:/config'
+            - '/home/frosty/AppData/speedtest-tracker/web:/etc/ssl/web'
+        image: 'ghcr.io/alexjustesen/speedtest-tracker:latest'
+        restart: unless-stopped
+        depends_on:
+            - db
+    db:
+        image: postgres:15
+        networks:
+          - speedTestNet
+        restart: always
+        environment:
+            - POSTGRES_DB=speedtest_tracker
+            - POSTGRES_USER=speedydbuser
+            - POSTGRES_PASSWORD=speedydb@password@!21
+        volumes:
+            - speedtest-db:/var/lib/postgresql/data
+volumes:
+  speedtest-db:
+
+networks:
+  speedTestNet:
+    driver: bridge

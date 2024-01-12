@@ -3,7 +3,7 @@ services:
   esphome:
     container_name: esphome
     network_mode: host
-    image: ghcr.io/esphome/esphome
+    image: ghcr.io/esphome/esphome:stable
     volumes:
       - /home/frosty/AppData/esphome/config:/config
       - /etc/localtime:/etc/localtime:ro

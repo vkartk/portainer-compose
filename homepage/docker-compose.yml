@@ -4,18 +4,19 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     networks:
-          dockervlan:
-            ipv4_address: 192.168.10.10
           intranet:
+          speedtest-tracker_network:
     restart: unless-stopped
     ports:
       - 3000:3000
     volumes:
       - /home/frosty/AppData/homepage/config:/app/config # Make sure your local config directory exists
+      - /home/frosty/AppData/homepage/images:/app/public/images
       - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
 
+
 networks:
-  dockervlan:
-    external: true
   intranet:
+    external: true
+  speedtest-tracker_network:
     external: true

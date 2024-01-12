@@ -3,7 +3,7 @@ services:
     speedtest-tracker:
         container_name: speedtest-tracker
         networks:
-          - speedTestNet
+          - network
         ports:
             - '8080:80'
             - '8443:443'
@@ -28,17 +28,18 @@ services:
     db:
         image: postgres:15
         networks:
-          - speedTestNet
+          - network
         restart: always
         environment:
             - POSTGRES_DB=speedtest_tracker
             - POSTGRES_USER=speedydbuser
             - POSTGRES_PASSWORD=speedydb@password@!21
+            - TZ=Asia/Kolkata
         volumes:
             - speedtest-db:/var/lib/postgresql/data
 volumes:
   speedtest-db:
 
 networks:
-  speedTestNet:
+  network:
     driver: bridge

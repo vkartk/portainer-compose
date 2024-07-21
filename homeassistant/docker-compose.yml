@@ -4,18 +4,13 @@ services:
   homeassistant:
     image: lscr.io/linuxserver/homeassistant:latest
     container_name: homeassistant
-    networks: 
-      intranet:
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
-      - /home/frosty/AppData/homeassistant/config:/config
+      - /opt/AppData/homeassistant/config:/config
     ports:
       - 8123:8123
     restart: unless-stopped
-
-networks:
-  intranet:
-    external: true
